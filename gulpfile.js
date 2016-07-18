@@ -7,12 +7,12 @@ var gulp 		= require('gulp'),
 
 gulp.task('css', function() {
 	return gulp.src('app/css/main.css')
-	.pipe(autoprefixer([
-			'last 15 versions',
-			'> 1%',
-			'ie 8',
-			'ie 7'
-		], {
+	.pipe(autoprefixer({
+			browsers: ['last 15 versions',
+					   '> 1%',
+					   'ie 8',
+					   'ie 7'
+		   			  ], 
 			cascade:true
 		}))
 	.pipe(cssnano())
@@ -39,7 +39,7 @@ gulp.task('clean', function () {
 })
 
 gulp.task('watch', ['browser-sync', 'css'], function() {
-	gulp.watch('app/css/*.css', ['css']);
+	gulp.watch('app/css/main.css', ['css']);
 	gulp.watch('app/*.html', browserSync.reload);
 })
 
